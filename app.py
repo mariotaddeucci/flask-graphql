@@ -3,6 +3,7 @@ from flask_graphql import GraphQLView
 from schema import schema
 from schema.sql import db as sql_db
 from schema.mongo import db as mongo_db
+from os import getenv
 
 app = Flask(__name__)
 
@@ -26,5 +27,6 @@ def home():
     return "A Simple Graphql endpoint"
 
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    port = int(getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
